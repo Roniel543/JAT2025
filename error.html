@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error de Inscripción - JAT2025</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .error-animation {
+      animation: errorShake 0.5s ease-in-out;
+    }
+    @keyframes errorShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="min-h-screen" style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 50%, #fef3c7 100%);">
+  <div class="min-h-screen flex items-center justify-center px-4 py-8">
+    <div class="max-w-2xl w-full">
+      <!-- Manage errors  -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-24 h-24 rounded-full mb-6 error-animation" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+        <!--El h1 es el titulo de la pagina de error y cambia segun el tipo de error-->
+        <h1 class="text-5xl font-bold mb-4" style="color: #030F27;">¡Ups! Algo salió mal</h1>
+        <p class="text-2xl text-gray-600 mb-2" id="errorTitle">Error en la inscripción</p>
+        <p class="text-lg text-gray-500" id="errorSubtitle">Revisa la información e inténtalo nuevamente</p>
+      </div>
+
+      <!-- Main Error Card -->
+      <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-8">
+        <div class="px-8 py-6" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+          <h2 class="text-3xl font-bold text-white text-center">Error de Inscripción</h2>
+          <p class="text-gray-100 text-center mt-2">No se pudo procesar tu solicitud</p>
+        </div>
+        
+        <div class="p-8">
+          <!-- Mensaje de error específico -->
+          <div class="p-6 rounded-xl mb-8" style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ef4444;">
+            <div class="flex items-start">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0" style="background: #ef4444;">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                </svg>
+              </div>
+              <div>
+                <!--Aqui esto es dinamico por eso lo referenciamos con el id con js para que se actualice la pagina de error segun del tipo de error. En react se usaria useState para actualizar el estado de la pagina.-->
+                <h3 class="text-xl font-bold mb-2" style="color: #030F27;" id="errorMessageTitle">Correo Electrónico ya Registrado</h3>
+                <p class="text-gray-700 mb-4" id="errorMessageDescription">
+                  El correo electrónico que ingresaste ya está registrado en nuestro sistema. 
+                  No se permiten inscripciones duplicadas para mantener la integridad de los datos.
+                </p>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <p class="text-sm text-yellow-800" id="errorSuggestion">
+                    <strong>💡 Sugerencia:</strong> Si crees que esto es un error, puedes contactarnos directamente 
+                    o intentar con un correo electrónico diferente.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h3 class="text-xl font-bold text-center" style="color: #030F27;">¿Qué puedes hacer ahora?</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- Try with another email button -->
+              <div class="p-6 rounded-xl border-2 border-gray-200 hover:border-yellow-400 transition-all duration-300">
+                <div class="text-center">
+                  <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #fdbe33 0%, #f59e0b 100%);">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                  </div>
+                  <h4 class="font-bold mb-2" style="color: #030F27;">Intentar con otro correo</h4>
+                  <p class="text-sm text-gray-600 mb-4">Usa un correo electrónico diferente para registrarte</p>
+                  <a href="index.html#inscripcion" 
+                     class="inline-flex items-center px-4 py-2 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                     style="background: linear-gradient(135deg, #030F27 0%, #1e3a8a 100%);">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Intentar de nuevo
+                  </a>
+                </div>
+              </div>
+
+              <!-- Contact support -->
+              <div class="p-6 rounded-xl border-2 border-gray-200 hover:border-green-400 transition-all duration-300">
+                <div class="text-center">
+                  <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                  </div>
+                  <h4 class="font-bold mb-2" style="color: #030F27;">Contactar soporte</h4>
+                  <p class="text-sm text-gray-600 mb-4">Si crees que es un error, contáctanos directamente</p>
+                  <a href="https://wa.me/51996560202?text=Hola, tengo un problema con mi inscripción a la JAT2025" 
+                     target="_blank"
+                     class="inline-flex items-center px-4 py-2 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                     style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                    </svg>
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Information -->
+          <div class="mt-8 p-6 rounded-xl" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
+            <h4 class="text-lg font-bold mb-3" style="color: #030F27;">📋 Información del Evento</h4>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <p class="font-semibold" style="color: #030F27;">Fecha:</p>
+                <p class="text-gray-600">Viernes xx de Noviembre, 2025</p>
+              </div>
+              <div>
+                <p class="font-semibold" style="color: #030F27;">Lugar:</p>
+                <p class="text-gray-600">IEST La Recoleta, Arequipa</p>
+              </div>
+              <div>
+                <p class="font-semibold" style="color: #030F27;">Contacto:</p>
+                <p class="text-gray-600">mesadepartes@iestlarecoleta.edu.pe</p>
+              </div>
+              <div>
+                <p class="font-semibold" style="color: #030F27;">Teléfono:</p>
+                <p class="text-gray-600">(054) 270947</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button of back to the home page -->
+          <div class="text-center mt-8">
+            <a href="index.html" 
+               class="inline-flex items-center px-8 py-4 text-lg font-bold text-white rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-300"
+               style="background: linear-gradient(135deg, #030F27 0%, #1e3a8a 100%);">
+              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              </svg>
+              Volver al Inicio
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center">
+        <p class="text-gray-500 mb-2">IEST La Recoleta - Arequipa, Perú</p>
+        <p class="text-sm text-gray-400">© 2025 Jornada de Actualización Tecnológica. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Efectos visuales -->
+  <div class="fixed top-10 right-10 floating">
+    <div class="w-20 h-20 rounded-full opacity-20" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);"></div>
+  </div>
+  <div class="fixed bottom-10 left-10 floating" style="animation-delay: 1s;">
+    <div class="w-16 h-16 rounded-full opacity-20" style="background: linear-gradient(135deg, #030F27 0%, #1e3a8a 100%);"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Obtener parámetros de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      //Obtenemos los parametros de la ULR mediante el METODO HTTP -> GET para poder pasarle los parametros a la pagina de error
+      const tipoError = urlParams.get('tipo');
+      const campo = urlParams.get('campo');
+
+      // Aqui configuramos los mensajes de error
+      // Este bloque define un objeto llamado `errorMessages` que organiza los diferentes mensajes de error 
+      
+      // "validacion" y "duplicado" son tipos de error:
+      // - "validacion": errores cuando el usuario no llena algún dato o lo llena mal en el formulario.
+      // - "duplicado": error cuando el correo ya ha sido registrado antes (inscripción repetida).
+
+      const errorMessages = {
+        'validacion': {
+          'nombres': {
+            title: 'Campo de Nombres Vacío',
+            description: 'El campo "Nombres y apellidos" es obligatorio. Por favor, completa esta información para continuar con tu inscripción.',
+            suggestion: '💡 Asegúrate de ingresar tu nombre completo tal como aparece en tu documento de identidad.'
+          },
+          'email': {
+            title: 'Campo de Email Vacío',
+            description: 'El campo "Correo electrónico" es obligatorio. Necesitamos tu email para enviarte la confirmación de inscripción.',
+            suggestion: '💡 Ingresa un correo electrónico válido que uses frecuentemente.'
+          },
+          'email_invalido': {
+            title: 'Email Inválido',
+            description: 'El formato del correo electrónico no es válido. Por favor, verifica que esté escrito correctamente.',
+            suggestion: '💡 El formato correcto es: ejemplo@dominio.com'
+          },
+          'celular': {
+            title: 'Campo de Celular Vacío',
+            description: 'El campo "Celular" es obligatorio. Necesitamos tu número para contactarte sobre el evento.',
+            suggestion: '💡 Ingresa tu número de celular sin espacios ni guiones (ej: 987654321).'
+          },
+          'celular_formato': {
+            title: 'Formato de Celular Inválido',
+            description: 'El número de celular debe contener entre 9 y 15 dígitos numéricos únicamente.',
+            suggestion: '💡 Ingresa solo números, sin espacios, guiones o caracteres especiales.'
+          },
+          'institucion': {
+            title: 'Campo de Institución Vacío',
+            description: 'El campo "Institución" es obligatorio. Necesitamos saber de qué institución provienes.',
+            suggestion: '💡 Ingresa el nombre completo de tu institución educativa.'
+          },
+          'area_interes': {
+            title: 'Área de Interés No Seleccionada',
+            description: 'Debes seleccionar un área de interés tecnológico para participar en el evento.',
+            suggestion: '💡 Elige la opción que más se relacione con tu campo de estudio o interés profesional.'
+          }
+        },
+        'duplicado': {
+          title: 'Correo Electrónico ya Registrado',
+          description: 'El correo electrónico que ingresaste ya está registrado en nuestro sistema. No se permiten inscripciones duplicadas para mantener la integridad de los datos.',
+          suggestion: '💡 Si crees que esto es un error, puedes contactarnos directamente o intentar con un correo electrónico diferente.'
+        }
+      };
+
+      // Determinar el tipo de error
+      let errorType = 'duplicado'; // Por defecto
+      if (tipoError === 'validacion') {
+        errorType = 'validacion';
+      }
+
+      // Obtener el mensaje correspondiente
+      let errorData;
+      if (errorType === 'validacion' && campo) {
+        errorData = errorMessages.validacion[campo] || errorMessages.validacion.nombres;
+      } else {
+        errorData = errorMessages.duplicado;
+      }
+
+      // Actualizar el contenido de la pagina de error
+      //Si usariamos react se usarios useState que es un hook de reac para actualizar el estado de la pagina.
+      document.getElementById('errorTitle').textContent = errorData.title;
+      document.getElementById('errorMessageTitle').textContent = errorData.title;
+      document.getElementById('errorMessageDescription').textContent = errorData.description;
+      document.getElementById('errorSuggestion').innerHTML = `<strong>💡 Sugerencia:</strong> ${errorData.suggestion}`;
+
+      // Cambiar el subtítulo según el tipo de error
+      if (errorType === 'validacion') {
+        document.getElementById('errorSubtitle').textContent = 'Completa todos los campos obligatorios e inténtalo nuevamente';
+      } else {
+        document.getElementById('errorSubtitle').textContent = 'Revisa la información e inténtalo nuevamente';
+      }
+    });
+  </script>
+</body>
+</html>
