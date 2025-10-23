@@ -1,0 +1,13 @@
+{
+    "name": "jat2025/certificados",
+    "description": "Sistema de certificados JAT 2025",
+    "type": "project",
+    "authors": [
+        {
+            "name": "IEST La Recoleta"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    }
+}
