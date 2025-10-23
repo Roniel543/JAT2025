@@ -1,15 +1,7 @@
 <?php
-// Configuración de la base de datos
-$host = 'localhost';
-$db   = 'jat2025';
-$user = 'root';      // Cambia en producción
-$pass = '';          // Cambia en producción
+// Configuración de la base de 
+include 'config/conexion.php';
 
-// Solo aceptar solicitudes POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    die('Método no permitido.');
-}
 
 // Recuperar y sanitizar datos
 $nombres = trim($_POST['nombres'] ?? '');
