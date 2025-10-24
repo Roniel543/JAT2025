@@ -211,7 +211,7 @@ try {
             margin-right: auto;
         }f
         .signatures {
-            margin-top: 80px;
+            margin-top: 20em;
             text-align: center;
             width: 100%;
         }
@@ -221,10 +221,11 @@ try {
             margin: 0 auto;
         }
         .signature-line {
-            width: 200px;
+            width: 350px;
             height: 1px;
             background: #1f2937;
-            margin: 0 auto 20px;
+            margin: 0 auto 10px;
+            margin-top: 60px;
             border-bottom: 1px solid #1f2937;
         }
         .signature-name {

@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
     </div>
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Mensaje de estado -->
+        <!-- Mensaje de estado esto en react es lo que conocemos como estado de alerta -->
         <?php if ($mensaje): ?>
         <div class="mb-6 p-4 rounded-2xl bg-red-100 text-red-800 border border-red-200">
             <div class="flex items-center">

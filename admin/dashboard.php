@@ -51,42 +51,133 @@ $estadisticas = [
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#f0f4ff',
-                            100: '#e0e7ff',
-                            500: '#667eea',
-                            600: '#5a67d8',
-                            700: '#4c51bf',
-                            900: '#2d3748'
+                        institutional: {
+                            navy: '#0A1E3D',
+                            gold: '#F7B800',
+                            'gold-light': '#FFE066',
+                            'navy-light': '#1a3a5f'
                         }
                     }
                 }
             }
         }
     </script>
+    <style>
+        .institutional-gradient {
+            background: linear-gradient(135deg, #0A1E3D 0%, #1a3a5f 100%);
+        }
+        .institutional-card {
+            background: white;
+            border: 2px solid #e5e5e5;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .institutional-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #F7B800 0%, #FFE066 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .institutional-card:hover {
+            border-color: #F7B800;
+            box-shadow: 0 10px 25px rgba(10, 30, 61, 0.15);
+            transform: translateY(-5px);
+        }
+        .institutional-card:hover::before {
+            transform: scaleX(1);
+        }
+        .gold-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #F7B800, transparent);
+        }
+        .stat-icon {
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(247, 184, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+        .institutional-card:hover .stat-icon::after {
+            width: 120%;
+            height: 120%;
+        }
+        .table-row-hover:hover {
+            background: linear-gradient(90deg, rgba(247, 184, 0, 0.1) 0%, transparent 100%);
+        }
+        .btn-action {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-action::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+            z-index: -1;
+        }
+        .btn-action:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+        .badge-area {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+        .badge-metalmecanica {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen">
     <!-- Header -->
-    <div class="bg-white/80 backdrop-blur-lg shadow-xl border-b border-white/20">
+    <div class="institutional-gradient shadow-2xl border-b-4 border-institutional-gold">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
-                <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                <div class="flex items-center space-x-5">
+                    <div class="w-16 h-16 bg-gradient-to-br from-institutional-gold to-institutional-gold-light rounded-2xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-graduation-cap text-institutional-navy text-3xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        <h1 class="text-4xl font-extrabold text-institutional-gold tracking-tight">
                             JAT2025
                         </h1>
-                        <p class="text-gray-600 text-sm">Panel de Administración</p>
+                        <p class="text-gray-200 text-sm font-medium mt-1">
+                            <i class="fas fa-shield-alt mr-1"></i>
+                            Panel de Administración
+                        </p>
                     </div>
                 </div>
                 <div class="flex space-x-3">
-                    <a href="../enviar_confirmacion.php" class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200">
+                    <a href="../enviar_confirmacion.php" 
+                       class="btn-action inline-flex items-center bg-institutional-gold text-institutional-navy px-6 py-3 font-bold rounded-xl hover:bg-institutional-gold-light transition-all duration-200 shadow-lg hover:shadow-xl">
                         <i class="fas fa-envelope mr-2"></i>
                         Enviar Emails
                     </a>
-                    <a href="login.php?logout=1" class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200">
+                    <a href="login.php?logout=1" 
+                       class="btn-action inline-flex items-center bg-red-600 text-white px-6 py-3 font-bold rounded-xl hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         Cerrar Sesión
                     </a>
@@ -98,64 +189,86 @@ $estadisticas = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Mensaje de eliminación -->
         <?php if (isset($_GET['eliminado'])): ?>
-        <div class="mb-6 p-4 rounded-2xl bg-green-100 text-green-800 border border-green-200">
+        <div class="mb-8 p-5 rounded-xl bg-gradient-to-r from-green-50 to-green-100 text-green-800 border-l-4 border-green-600 shadow-lg">
             <div class="flex items-center">
-                <i class="fas fa-check-circle mr-3"></i>
-                Participante eliminado correctamente
+                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-check-circle text-white text-xl"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-lg">¡Acción Exitosa!</p>
+                    <p class="text-sm">Participante eliminado correctamente del sistema</p>
+                </div>
             </div>
         </div>
         <?php endif; ?>
 
         <!-- Estadísticas -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <div class="institutional-card p-6 shadow-lg rounded-lg">
                 <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Total Inscritos</p>
-                        <p class="text-3xl font-bold text-gray-900"><?= $estadisticas['total'] ?></p>
-                        <p class="text-green-600 text-sm font-medium">+<?= $estadisticas['hoy'] ?> hoy</p>
+                    <div class="flex-1">
+                        <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Total Inscritos</p>
+                        <p class="text-4xl font-bold text-institutional-navy mb-1"><?= $estadisticas['total'] ?></p>
+                        <div class="flex items-center">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                <i class="fas fa-arrow-up mr-1"></i>
+                                +<?= $estadisticas['hoy'] ?> hoy
+                            </span>
+                        </div>
                     </div>
-                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-users text-white text-xl"></i>
+                    <div class="w-16 h-16 bg-institutional-navy flex items-center justify-center rounded-xl stat-icon shadow-lg">
+                        <i class="fas fa-users text-institutional-gold text-2xl"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <div class="institutional-card p-6 shadow-lg rounded-lg">
                 <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Informática</p>
-                        <p class="text-3xl font-bold text-gray-900"><?= $estadisticas['informatica'] ?></p>
-                        <p class="text-blue-600 text-sm font-medium"><?= round(($estadisticas['informatica'] / max($estadisticas['total'], 1)) * 100, 1) ?>%</p>
+                    <div class="flex-1">
+                        <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Informática</p>
+                        <p class="text-4xl font-bold text-institutional-navy mb-1"><?= $estadisticas['informatica'] ?></p>
+                        <div class="flex items-center">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                <?= round(($estadisticas['informatica'] / max($estadisticas['total'], 1)) * 100, 1) ?>% del total
+                            </span>
+                        </div>
                     </div>
-                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-white text-xl"></i>
+                    <div class="w-16 h-16 bg-green-600 flex items-center justify-center rounded-xl stat-icon shadow-lg">
+                        <i class="fas fa-laptop-code text-white text-2xl"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <div class="institutional-card p-6 shadow-lg rounded-lg">
                 <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Metalmecánica</p>
-                        <p class="text-3xl font-bold text-gray-900"><?= $estadisticas['metalmecanica'] ?></p>
-                        <p class="text-orange-600 text-sm font-medium"><?= round(($estadisticas['metalmecanica'] / max($estadisticas['total'], 1)) * 100, 1) ?>%</p>
+                    <div class="flex-1">
+                        <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Metalmecánica</p>
+                        <p class="text-4xl font-bold text-institutional-navy mb-1"><?= $estadisticas['metalmecanica'] ?></p>
+                        <div class="flex items-center">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                <?= round(($estadisticas['metalmecanica'] / max($estadisticas['total'], 1)) * 100, 1) ?>% del total
+                            </span>
+                        </div>
                     </div>
-                    <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-cogs text-white text-xl"></i>
+                    <div class="w-16 h-16 bg-orange-600 flex items-center justify-center rounded-xl stat-icon shadow-lg">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <div class="institutional-card p-6 shadow-lg rounded-lg">
                 <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Capacidad</p>
-                        <p class="text-3xl font-bold text-gray-900">160</p>
-                        <p class="text-purple-600 text-sm font-medium"><?= round(($estadisticas['total'] / 160) * 100, 1) ?>% ocupado</p>
+                    <div class="flex-1">
+                        <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2">Capacidad</p>
+                        <p class="text-4xl font-bold text-institutional-navy mb-1">160</p>
+                        <div class="flex items-center">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                <?= round(($estadisticas['total'] / 160) * 100, 1) ?>% ocupado
+                            </span>
+                        </div>
                     </div>
-                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-chart-pie text-white text-xl"></i>
+                    <div class="w-16 h-16 bg-purple-600 flex items-center justify-center rounded-xl stat-icon shadow-lg">
+                        <i class="fas fa-chart-pie text-white text-2xl"></i>
                     </div>
                 </div>
             </div>
@@ -163,85 +276,112 @@ $estadisticas = [
 
         <!-- Alerta de capacidad -->
         <?php if ($estadisticas['total'] >= 160): ?>
-        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-4 rounded-2xl mb-8 shadow-xl">
+        <div class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-6 rounded-2xl mb-8 shadow-2xl border-l-4 border-white">
             <div class="flex items-center">
-                <i class="fas fa-exclamation-triangle text-2xl mr-4"></i>
-                <div>
-                    <h3 class="font-bold text-lg">¡Capacidad Máxima Alcanzada!</h3>
-                    <p>Se ha alcanzado la capacidad máxima de 160 participantes.</p>
+                <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-full flex items-center justify-center mr-5">
+                    <i class="fas fa-exclamation-triangle text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-extrabold text-2xl mb-1">¡Capacidad Máxima Alcanzada!</h3>
+                    <p class="text-white/90">Se ha alcanzado la capacidad máxima de 160 participantes. No se aceptarán más inscripciones.</p>
+                </div>
+                <div class="bg-white/20 backdrop-blur px-5 py-3 rounded-xl">
+                    <p class="text-3xl font-black"><?= $estadisticas['total'] ?>/160</p>
                 </div>
             </div>
         </div>
         <?php endif; ?>
 
+        <!-- Divisor decorativo -->
+        <div class="gold-divider mb-8"></div>
+
         <!-- Tabla de participantes -->
-        <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 overflow-hidden">
-            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4">
-                <h2 class="text-xl font-bold text-white flex items-center">
-                    <i class="fas fa-list-alt mr-3"></i>
+        <div class="bg-white shadow-2xl rounded-xl overflow-hidden border border-gray-200">
+            <div class="institutional-gradient px-6 py-5 border-b-4 border-institutional-gold">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <i class="fas fa-list-alt mr-3 text-institutional-gold"></i>
                     Lista de Participantes
                 </h2>
+                <p class="text-gray-300 text-sm mt-1">Gestión completa de preinscripciones</p>
             </div>
             
             <div class="overflow-x-auto">
                 <table class="w-full">
-                    <thead class="bg-gray-50/80">
+                    <thead class="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-institutional-gold">
                         <tr>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Participante</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Contacto</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Institución</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Área</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Fecha</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Certificado</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-institutional-navy uppercase tracking-wider">Participante</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-institutional-navy uppercase tracking-wider">Contacto</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-institutional-navy uppercase tracking-wider">Institución</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-institutional-navy uppercase tracking-wider">Área</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-institutional-navy uppercase tracking-wider">Fecha</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-institutional-navy uppercase tracking-wider">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200">
+                    <tbody class="divide-y divide-gray-100">
                         <?php foreach ($inscritos as $inscrito): ?>
-                        <tr class="hover:bg-indigo-50/50 transition-colors duration-200">
+                        <tr class="table-row-hover transition-all duration-200">
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-institutional-navy to-institutional-navy-light rounded-xl flex items-center justify-center text-institutional-gold font-bold text-lg shadow-lg">
                                         <?= strtoupper(substr($inscrito['nombres'], 0, 1)) ?>
                                     </div>
                                     <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900"><?= htmlspecialchars($inscrito['nombres']) ?></div>
+                                        <div class="text-sm font-bold text-gray-900"><?= htmlspecialchars($inscrito['nombres']) ?></div>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900"><?= htmlspecialchars($inscrito['email']) ?></div>
-                                <div class="text-sm text-gray-500"><?= htmlspecialchars($inscrito['celular']) ?></div>
+                                <div class="text-sm text-gray-700 font-medium flex items-center">
+                                    <i class="fas fa-envelope text-institutional-gold mr-2"></i>
+                                    <?= htmlspecialchars($inscrito['email']) ?>
+                                </div>
+                                <div class="text-xs text-gray-500 mt-1 flex items-center">
+                                    <i class="fas fa-phone text-green-600 mr-2"></i>
+                                    <?= htmlspecialchars($inscrito['celular']) ?>
+                                </div>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                <div class="text-sm text-gray-700 font-medium flex items-center">
+                                    <i class="fas fa-building text-institutional-navy mr-2"></i>
                                     <?= htmlspecialchars($inscrito['institucion']) ?>
-                                </span>
+                                </div>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <?= $inscrito['area'] == 'informatica' ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800' ?>">
-                                    <i class="fas <?= $inscrito['area'] == 'informatica' ? 'fa-laptop-code' : 'fa-cogs' ?> mr-1"></i>
-                                    <?= $inscrito['area_texto'] ?>
-                                </span>
+                                <?php if ($inscrito['area'] == 'informatica'): ?>
+                                    <span class="badge-area inline-flex items-center px-3 py-2 rounded-lg text-xs font-bold text-white">
+                                        <i class="fas fa-laptop-code mr-2"></i>
+                                        <?= $inscrito['area_texto'] ?>
+                                    </span>
+                                <?php else: ?>
+                                    <span class="badge-metalmecanica inline-flex items-center px-3 py-2 rounded-lg text-xs font-bold text-white">
+                                        <i class="fas fa-cogs mr-2"></i>
+                                        <?= $inscrito['area_texto'] ?>
+                                    </span>
+                                <?php endif; ?>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900"><?= date('d/m H:i', strtotime($inscrito['fecha_inscripcion'])) ?></div>
-                                <div class="text-xs text-gray-500"><?= date('Y', strtotime($inscrito['fecha_inscripcion'])) ?></div>
+                                <div class="text-sm text-gray-700 font-medium">
+                                    <?= date('d/m/Y', strtotime($inscrito['fecha_inscripcion'])) ?>
+                                </div>
+                                <div class="text-xs text-gray-500">
+                                    <?= date('H:i', strtotime($inscrito['fecha_inscripcion'])) ?>
+                                </div>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex space-x-2">
                                     <a href="generar_certificado.php?id=<?= $inscrito['id'] ?>" 
-                                       class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-sm font-medium rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200">
-                                        <i class="fas fa-file-pdf mr-1"></i>
+                                       class="btn-action inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-bold rounded-lg hover:bg-red-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                                        <i class="fas fa-file-pdf mr-2"></i>
                                         PDF
                                     </a>
                                     <a href="editar_participante.php?id=<?= $inscrito['id'] ?>" 
-                                       class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-medium rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200">
-                                        <i class="fas fa-edit mr-1"></i>
+                                       class="btn-action inline-flex items-center px-4 py-2 bg-institutional-navy text-white text-sm font-bold rounded-lg hover:bg-institutional-navy-light transition-all duration-200 shadow-md hover:shadow-lg">
+                                        <i class="fas fa-edit mr-2"></i>
                                         Editar
                                     </a>
                                     <a href="eliminar_participante.php?id=<?= $inscrito['id'] ?>" 
-                                       class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-medium rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200">
-                                        <i class="fas fa-trash mr-1"></i>
+                                       class="btn-action inline-flex items-center px-4 py-2 bg-orange-600 text-white text-sm font-bold rounded-lg hover:bg-orange-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                                        <i class="fas fa-trash mr-2"></i>
                                         Eliminar
                                     </a>
                                 </div>
@@ -255,22 +395,25 @@ $estadisticas = [
 
         <!-- Paginación -->
         <?php if ($total_paginas > 1): ?>
-        <div class="mt-8 flex justify-center">
-            <nav class="flex space-x-2">
+        <div class="mt-10 flex justify-center">
+            <nav class="flex items-center space-x-2 bg-white p-3 rounded-xl shadow-lg border-2 border-gray-200">
                 <?php if ($pagina_actual > 1): ?>
-                <a href="?page=<?= $pagina_actual - 1 ?>" class="px-4 py-2 bg-white/80 backdrop-blur-lg rounded-lg shadow-lg border border-white/20 hover:shadow-xl transition-all duration-200">
+                <a href="?page=<?= $pagina_actual - 1 ?>" 
+                   class="w-10 h-10 flex items-center justify-center bg-gray-100 text-gray-600 font-bold rounded-lg hover:bg-institutional-navy hover:text-institutional-gold transition-all duration-200 shadow-sm">
                     <i class="fas fa-chevron-left"></i>
                 </a>
                 <?php endif; ?>
                 
                 <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-                <a href="?page=<?= $i ?>" class="px-4 py-2 rounded-lg transition-all duration-200 <?= $i == $pagina_actual ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg' : 'bg-white/80 backdrop-blur-lg shadow-lg border border-white/20 hover:shadow-xl' ?>">
+                <a href="?page=<?= $i ?>" 
+                   class="w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-200 <?= $i == $pagina_actual ? 'bg-gradient-to-br from-institutional-navy to-institutional-navy-light text-institutional-gold font-bold shadow-lg scale-110' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 font-medium shadow-sm' ?>">
                     <?= $i ?>
                 </a>
                 <?php endfor; ?>
                 
                 <?php if ($pagina_actual < $total_paginas): ?>
-                <a href="?page=<?= $pagina_actual + 1 ?>" class="px-4 py-2 bg-white/80 backdrop-blur-lg rounded-lg shadow-lg border border-white/20 hover:shadow-xl transition-all duration-200">
+                <a href="?page=<?= $pagina_actual + 1 ?>" 
+                   class="w-10 h-10 flex items-center justify-center bg-gray-100 text-gray-600 font-bold rounded-lg hover:bg-institutional-navy hover:text-institutional-gold transition-all duration-200 shadow-sm">
                     <i class="fas fa-chevron-right"></i>
                 </a>
                 <?php endif; ?>
@@ -280,11 +423,37 @@ $estadisticas = [
     </div>
 
     <!-- Footer -->
-    <div class="mt-16 bg-white/80 backdrop-blur-lg border-t border-white/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mt-20 institutional-gradient border-t-4 border-institutional-gold shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="text-center">
-                <p class="text-gray-600">© 2025 JAT2025 - Jornada de Actualización Tecnológica</p>
-                <p class="text-sm text-gray-500 mt-2">Sistema de Certificados Profesionales</p>
+                <div class="mb-4">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-institutional-gold rounded-2xl mb-3">
+                        <i class="fas fa-graduation-cap text-institutional-navy text-2xl"></i>
+                    </div>
+                </div>
+                <p class="text-white font-extrabold text-lg tracking-wide">
+                    © 2025 INSTITUTO DE EDUCACIÓN SUPERIOR TECNOLÓGICO LA RECOLETA
+                </p>
+                <div class="gold-divider w-32 mx-auto my-4"></div>
+                <p class="text-institutional-gold text-base font-bold">
+                    Jornada de Actualización Tecnológica 2025
+                </p>
+                <p class="text-gray-300 text-sm mt-3 opacity-90">
+                    Sistema de Gestión de Preinscripciones y Certificados
+                </p>
+                <div class="mt-6 flex items-center justify-center space-x-6 text-gray-300">
+                    <a href="#" class="hover:text-institutional-gold transition-colors duration-200">
+                        <i class="fas fa-home mr-2"></i>Inicio
+                    </a>
+                    <span class="text-institutional-gold">•</span>
+                    <a href="#" class="hover:text-institutional-gold transition-colors duration-200">
+                        <i class="fas fa-info-circle mr-2"></i>Ayuda
+                    </a>
+                    <span class="text-institutional-gold">•</span>
+                    <a href="#" class="hover:text-institutional-gold transition-colors duration-200">
+                        <i class="fas fa-envelope mr-2"></i>Contacto
+                    </a>
+                </div>
             </div>
         </div>
     </div>

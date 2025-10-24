@@ -1,0 +1,30 @@
+# Credenciales y configuración sensible
+config/email_config.php
+
+# Logs
+logs/
+*.log
+
+# Archivos de base de datos
+*.sql
+
+# Composer
+/vendor/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos temporales
+*.tmp
+*.bak
+
+# Documentación de desarrollo
+SISTEMA_EMAIL_LISTO.md
+
